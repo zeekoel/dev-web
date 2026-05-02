@@ -6,194 +6,211 @@
     <title>Atlas Bank - E-Banking Pro</title>
     <style>
         :root {
-            --bleu-marin: #001a33;
-            --violet: #6a0dad;
-            --noir: #121212;
-            --blanc: #ffffff;
-            --gris-bg: #f0f2f5;
-        }
+    --bleu-marin: #001a33;
+    --violet: #6a0dad;
+    --noir: #121212;
+    --blanc: #ffffff;
+    --gris-bg: #f0f2f5;
+}
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--gris-bg);
-            overflow-x: hidden;
-        }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--gris-bg);
+    overflow-x: hidden;
+}
 
-        header {
-            background-color: var(--bleu-marin);
-            color: white;
-            padding: 0 5%;
-            height: 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid var(--violet);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
 
-        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
-        .logo span { color: var(--violet); }
+header {
+    background-color: var(--bleu-marin);
+    color: white;
+    padding: 0 5%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--violet);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+}
 
-        .nav-bar ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
-        }
+.logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+.logo span { color: var(--violet); }
 
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
 
-        .nav-bar a:hover { color: var(--violet); }
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
 
-        .btn-login {
-            background-color: var(--violet);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.nav-links a:hover { color: var(--violet); }
 
-        .btn-login:hover { transform: scale(1.05); background-color: #4a0880; }
-        .btn-login a { color: white; text-decoration: none; font-weight: bold; }
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
 
-        .ebanking-wrapper {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            margin-top: 73px;
-            min-height: calc(100vh - 73px);
-        }
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
 
-        .sidebar {
-            background-color: var(--noir);
-            color: white;
-            padding: 30px 20px;
-            position: fixed;
-            width: 210px;
-            top: 73px;
-            bottom: 0;
-            border-right: 1px solid rgba(255,255,255,0.05);
-        }
+.btn-login {
+    background-color: var(--violet);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    font-weight: bold;
+}
 
-        .sidebar h2 { font-size: 1.1rem; color: var(--violet); margin-bottom: 30px; letter-spacing: 1px; }
 
-        .menu-item {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
-        }
+.ebanking-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    margin-top: 73px;
+    min-height: calc(100vh - 73px);
+}
 
-        .menu-item:hover, .menu-item.active {
-            background-color: var(--violet);
-            color: white;
-        }
+.sidebar {
+    background-color: var(--noir);
+    color: white;
+    padding: 30px 20px;
+    position: fixed;
+    width: 210px;
+    top: 73px;
+    bottom: 0;
+    border-right: 1px solid rgba(255,255,255,0.05);
+}
 
-        .dashboard-content {
-            grid-column-start: 2;
-            padding: 40px;
-            background-color: var(--gris-bg);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--noir);
-        }
+.sidebar h2 { font-size: 1.1rem; color: var(--violet); margin-bottom: 30px; letter-spacing: 1px; }
 
-        .dashboard-content:hover {
-            background-color: var(--bleu-marin);
-            color: var(--blanc);
-        }
+.menu-item {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+}
 
-        .dashboard-content:hover h1, 
-        .dashboard-content:hover span,
-        .dashboard-content:hover p {
-            color: var(--blanc) !important;
-        }
+.menu-item:hover, .menu-item.active {
+    background-color: var(--violet);
+    color: white;
+}
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
+.dashboard-content {
+    grid-column-start: 2;
+    padding: 40px;
+    background-color: var(--gris-bg);
+    color: var(--noir);
+}
 
-        .account-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
 
-        .balance-card {
-            background: linear-gradient(135deg, var(--bleu-marin) 0%, var(--noir) 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: 0.4s;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+.account-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
 
-        .dashboard-content:hover .balance-card {
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            border-color: var(--violet);
-        }
+.balance-card {
+    background: linear-gradient(135deg, var(--bleu-marin) 0%, var(--noir) 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+}
 
-        .balance-card::after {
-            content: '';
-            position: absolute;
-            right: -20px; bottom: -20px;
-            width: 120px; height: 120px;
-            background: var(--violet);
-            opacity: 0.15;
-            border-radius: 50%;
-        }
+.balance-amount {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 15px 0;
+}
 
-        .balance-amount {
-            font-size: 2.2rem;
-            font-weight: bold;
-            margin: 15px 0;
-        }
 
-        @media (max-width: 768px) {
-            .ebanking-wrapper { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
-            .dashboard-content { grid-column-start: 1; padding: 20px; }
-            .nav-bar { display: none; }
-        }
+@media screen and (max-width: 992px) {
+    .ebanking-wrapper { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .dashboard-content { grid-column-start: 1; padding: 20px; }
+    
+    .menu-toggle { display: flex; }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: var(--bleu-marin);
+        border-bottom: 2px solid var(--violet);
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .nav-links.active { display: flex; }
+    .nav-links li { margin: 15px 0; }
+    .btn-desktop { display: none; }
+}
     </style>
 </head>
 <body>
 
     <header>
-        <a href="acceil.html" style="color: white;"><div class="logo">ATLAS<span>BANK</span></div></a>
-        <nav class="nav-bar">
-            <ul>
+        <a href="acceil.html" style="text-decoration:none; color:white;">
+            <div class="logo">ATLAS<span>BANK</span></div>
+        </a>
+        
+        <nav>
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="offres.html">Nos offres</a></li>
                 <li><a href="transaction.html">Transactions</a></li>
                 <li><a href="user.html">User</a></li>
-                <li><a href="E-banking.html" style="color: var(--violet); font-weight: bold;">E-Banking</a></li>
+                <li><a href="E-banking.html">E-Banking</a></li>
             </ul>
         </nav>
-        <button class="btn-login"><a href="contact.html">Déconnexion</a></button>
+    
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    
+        <a href="contact.html" class="btn-desktop">
+            <button class="btn-login" style="color:white; font-weight:bold; cursor:pointer;">Accès Client</button>
+        </a>
     </header>
-
+    
+    <script src="script.js"></script>
     <div class="ebanking-wrapper">
         <aside class="sidebar">
             <h2>ATLAS ONLINE</h2>
