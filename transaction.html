@@ -11,13 +11,15 @@
             --noir: #121212;
             --blanc: #ffffff;
             --gris-bg: #f0f2f5;
-            --gris-clair: #ddd;
+            --success: #27ae60;
+            --pending: #f39c12;
         }
 
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--gris-bg);
+            overflow-x: hidden;
         }
 
         header {
@@ -30,193 +32,155 @@
             align-items: center;
             border-bottom: 3px solid var(--violet);
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
         }
 
-        header a {
-            text-decoration: none;
-            color: inherit;
-        }
+        header a { text-decoration: none; color: inherit; }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: var(--violet); }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .logo span {
-            color: var(--violet);
-        }
-
-        .nav-bar ul {
-            display: flex;
+        .nav-links {
             list-style: none;
-            gap: 25px;
+            display: flex;
+            gap: 20px;
             margin: 0;
             padding: 0;
         }
 
-        .nav-bar a {
-            color: white;
+        .nav-links a {
+            color: var(--blanc);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
             transition: 0.3s;
         }
 
-        .nav-bar a:hover {
-            color: var(--violet);
+        .nav-links a:hover { color: var(--violet); }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
         }
 
         .btn-login {
             background-color: var(--violet);
-            border: none;
-            padding: 10px 20px;
+            color: white;
+            padding: 10px 25px;
             border-radius: 25px;
+            border: none;
             cursor: pointer;
+            font-weight: bold;
             transition: 0.3s;
         }
 
-        .btn-login a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+        main {
+            padding: 120px 8% 50px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .main-container {
-            padding-top: 100px;
-            padding-bottom: 40px;
-        }
+        h2 { color: var(--bleu-marin); margin-bottom: 30px; border-left: 5px solid var(--violet); padding-left: 15px; }
 
-        .transactions-section {
+        .table-container {
             background: white;
-            margin: 0 5%;
-            padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow-x: auto;
         }
 
-        .transactions-section:hover {
-            box-shadow: 0 15px 35px rgba(106, 13, 173, 0.15);
-        }
-
-        .trans-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--gris-clair);
-            padding-bottom: 15px;
-        }
-
-        .trans-header h3 {
-            color: var(--bleu-marin);
-            margin: 0;
-        }
-
-        .trans-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
+            min-width: 800px;
         }
 
-        .trans-table th {
-            background-color: var(--bleu-marin);
-            color: white;
-            padding: 12px;
+        th {
+            background-color: #f8f9fa;
+            color: var(--bleu-marin);
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--gris-bg);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
             font-size: 0.9rem;
         }
 
-        .trans-table td {
-            padding: 15px 12px;
-            border-bottom: 1px solid #eee;
-            font-size: 0.95rem;
-        }
-
-        .amount-in {
-            color: #27ae60; 
-            font-weight: bold;
-        }
-
-        .amount-out {
-            color: #e74c3c; 
-            font-weight: bold;
-        }
+        tr:hover { background-color: #fcfcfc; }
 
         .status-badge {
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: bold;
         }
 
-        .status-completed { background: #d4edda; color: #155724; }
-        .status-pending { background: #fff3cd; color: #856404; }
+        .status-completed { background: #e8f5e9; color: var(--success); }
+        .status-pending { background: #fff3e0; color: var(--pending); }
 
-        .filter-bar {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-        }
+        .amount-in { color: var(--success); font-weight: bold; }
+        .amount-out { color: #e74c3c; font-weight: bold; }
 
-        .filter-bar input, .filter-bar select {
-            padding: 8px;
-            border: 1px solid var(--violet);
-            border-radius: 5px;
-            outline: none;
-        }
-
-        @media (max-width: 768px) {
-            .nav-bar { display: none; }
-            .filter-bar { flex-direction: column; }
-            .trans-table { font-size: 0.8rem; }
-            .trans-header { flex-direction: column; gap: 10px; text-align: center; }
+        @media screen and (max-width: 768px) {
+            .menu-toggle { display: flex; order: 2; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bleu-marin);
+                padding: 20px 0;
+                border-bottom: 2px solid var(--violet);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; text-align: center; }
+            .btn-desktop { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="acceil.html">
-            <div class="logo">ATLAS<span>BANK</span></div>
-        </a>
-        <nav class="nav-bar">
-            <ul>
+        <a href="acceil.html"><div class="logo">ATLAS<span>BANK</span></div></a>
+        <nav>
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="offres.html">Nos offres</a></li>
-                <li><a href="transaction.html" style="color: var(--violet); font-weight: bold;">Transactions</a></li>
+                <li><a href="transaction.html">Transactions</a></li>
                 <li><a href="user.html">User</a></li>
                 <li><a href="E-banking.html">E-Banking</a></li>
             </ul>
         </nav>
-        <button class="btn-login"><a href="contact.html">Accès Client</a></button>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <a href="contact.html" class="btn-desktop"><button class="btn-login">Accès Client</button></a>
     </header>
 
-    <main class="main-container">
-        <section class="transactions-section">
-            <div class="trans-header">
-                <h3>Dernières Transactions Business</h3>
-                <button class="btn-login" style="font-size: 0.8rem; background: wheat;">Télécharger Relevé (PDF)</button>
-            </div>
-
-            <div class="filter-bar">
-                <input type="text" placeholder="Rechercher une opération...">
-                <select>
-                    <option>Tous les comptes</option>
-                    <option>Compte Courant Pro</option>
-                    <option>Compte Devises</option>
-                </select>
-            </div>
-
-            <table class="trans-table">
+    <main>
+        <h2>Historique des Transactions</h2>
+        
+        <div class="table-container">
+            <table>
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Libellé de l'opération</th>
+                        <th>Détails</th>
                         <th>Catégorie</th>
                         <th>Statut</th>
                         <th>Montant</th>
@@ -224,7 +188,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>01 Mai 2026</td>
+                        <td>02 Mai 2026</td>
                         <td>Virement reçu - Client AL AMAL SARL</td>
                         <td>Encaissement</td>
                         <td><span class="status-badge status-completed">Validé</span></td>
@@ -253,8 +217,9 @@
                     </tr>
                 </tbody>
             </table>
-        </section>
+        </div>
     </main>
 
+    <script src="script.js"></script>
 </body>
 </html>
