@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas Bank - Entreprises</title>
+    <title>Atlas Bank - Espace Business</title>
     <style>
         :root {
             --bleu-marin: #001a33;
@@ -17,6 +17,7 @@
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--gris-bg);
+            overflow-x: hidden;
         }
 
         header {
@@ -29,220 +30,169 @@
             align-items: center;
             border-bottom: 3px solid var(--violet);
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
         }
 
         header a { text-decoration: none; color: inherit; }
-
-        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
         .logo span { color: var(--violet); }
 
-        .nav-bar ul {
-            display: flex;
+        .nav-links {
             list-style: none;
-            gap: 25px;
+            display: flex;
+            gap: 20px;
             margin: 0;
             padding: 0;
         }
 
-        .nav-bar a {
-            color: white;
+        .nav-links a {
+            color: var(--blanc);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
             transition: 0.3s;
         }
 
-        .nav-bar a:hover { color: var(--violet); }
+        .nav-links a:hover { color: var(--violet); }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
 
         .btn-login {
             background-color: var(--violet);
-            border: none;
-            padding: 10px 20px;
+            color: white;
+            padding: 10px 25px;
             border-radius: 25px;
+            border: none;
             cursor: pointer;
+            font-weight: bold;
             transition: 0.3s;
         }
 
-        .btn-login a { color: white; text-decoration: none; font-weight: bold; }
-
         .auth-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 0 5%;
-            background: linear-gradient(135deg, var(--noir) 0%, var(--bleu-marin) 100%);
-            padding-top: 70px;
-        }
-
-        .auth-card {
-            background: white;
-            width: 100%;
-            max-width: 900px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 120px 8% 50px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .auth-section {
+            background: white;
             padding: 40px;
-            display: flex;
-            flex-direction: column;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
         }
 
-        .auth-section.login-side {
-            background-color: var(--blanc);
-        }
+        .auth-section h2 { color: var(--bleu-marin); margin-bottom: 25px; }
 
-        .auth-section.signup-side {
-            background-color: var(--bleu-marin);
-            color: white;
-            border-left: 2px solid var(--violet);
-        }
-
-        .auth-section h2 {
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-            color: inherit;
-        }
-
-        .login-side h2 { color: var(--bleu-marin); }
-
-        .input-box {
-            margin-bottom: 20px;
-        }
-
-        .input-box label {
-            display: block;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
+        .input-box { margin-bottom: 20px; }
+        .input-box label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
         .input-box input {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            background: #f9f9f9;
-            outline: none;
-        }
-
-        .signup-side input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+            border-radius: 8px;
+            box-sizing: border-box;
+            outline-color: var(--violet);
         }
 
         .auth-btn {
-            padding: 12px;
+            width: 100%;
+            padding: 15px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 10px;
         }
 
-        .btn-login-main {
-            background: var(--bleu-marin);
-            color: white;
-        }
+        .btn-login-main { background: var(--bleu-marin); color: white; }
+        .btn-signup-main { background: var(--violet); color: white; }
 
-        .btn-login-main:hover { background: var(--violet); }
-
-        .btn-signup-main {
-            background: var(--violet);
-            color: white;
-        }
-
-        .btn-signup-main:hover { opacity: 0.9; }
-
-        .forgot-pass {
-            font-size: 0.8rem;
-            color: var(--violet);
-            text-decoration: none;
-            margin-top: 10px;
-            text-align: right;
-        }
-
-        .info-text {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            .auth-card { grid-template-columns: 1fr; }
-            .signup-side { border-left: none; border-top: 2px solid var(--violet); }
-            .nav-bar { display: none; }
+        @media screen and (max-width: 768px) {
+            .menu-toggle { display: flex; order: 2; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bleu-marin);
+                padding: 20px 0;
+                border-bottom: 2px solid var(--violet);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; text-align: center; }
+            .btn-desktop { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="acceil.html">
-            <div class="logo">ATLAS<span>BANK</span></div>
-        </a>
-        <nav class="nav-bar">
-            <ul>
+        <a href="acceil.html"><div class="logo">ATLAS<span>BANK</span></div></a>
+        <nav>
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="offres.html">Nos offres</a></li>
                 <li><a href="transaction.html">Transactions</a></li>
                 <li><a href="user.html">User</a></li>
                 <li><a href="E-banking.html">E-Banking</a></li>
             </ul>
         </nav>
-        <button class="btn-login"><a href="contact.html">Accès Client</a></button>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <a href="contact.html" class="btn-desktop"><button class="btn-login">Accès Client</button></a>
     </header>
 
-    <div class="auth-container">
-        <div class="auth-card">
-            
-            <div class="auth-section login-side">
-                <h2>Accès Atlas Entreprise</h2>
-                <form>
-                    <div class="input-box">
-                        <label>Identifiant Client</label>
-                        <input type="text" placeholder="Entrez votre ID">
-                    </div>
-                    <div class="input-box">
-                        <label>Code Secret</label>
-                        <input type="password" placeholder="••••••••">
-                    </div>
-                    <button type="submit" class="auth-btn btn-login-main">Se Connecter</button>
-                    <a href="#" class="forgot-pass">Identifiant ou mot de passe oublié ?</a>
-                </form>
-            </div>
+    <main class="auth-container">
+        <section class="auth-section">
+            <h2>Accès Professionnel</h2>
+            <form>
+                <div class="input-box">
+                    <label>Identifiant Business</label>
+                    <input type="text" placeholder="Entrez votre identifiant">
+                </div>
+                <div class="input-box">
+                    <label>Code Secret</label>
+                    <input type="password" placeholder="••••••••">
+                </div>
+                <button type="submit" class="auth-btn btn-login-main">Se Connecter</button>
+            </form>
+        </section>
 
-            <div class="auth-section signup-side">
-                <h2>Nouvelle Entreprise ?</h2>
-                <p class="info-text">Rejoignez la plateforme Atlas Business pour gérer vos flux financiers, salaires et paiements internationaux en un clic.</p>
-                <form>
-                    <div class="input-box">
-                        <label>ICE (Identifiant Commun de l'Entreprise)</label>
-                        <input type="text" placeholder="15 chiffres">
-                    </div>
-                    <div class="input-box">
-                        <label>Email Professionnel</label>
-                        <input type="email" placeholder="contact@entreprise.ma">
-                    </div>
-                    <button type="submit" class="auth-btn btn-signup-main">Demander l'Ouverture</button>
-                </form>
-                <p style="font-size: 0.7rem; margin-top: 20px; color: #aaa;">
-                    * La validation de votre compte nécessite une étude de dossier par votre conseiller sous 24h.
-                </p>
-            </div>
+        <section class="auth-section">
+            <h2>Devenir Partenaire</h2>
+            <form>
+                <div class="input-box">
+                    <label>Nom de l'entreprise</label>
+                    <input type="text" placeholder="Ex: Atlas Tech SARL">
+                </div>
+                <div class="input-box">
+                    <label>ICE</label>
+                    <input type="text" placeholder="15 chiffres">
+                </div>
+                <button type="submit" class="auth-btn btn-signup-main">Demander l'ouverture</button>
+            </form>
+        </section>
+    </main>
 
-        </div>
-    </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
