@@ -2,6 +2,15 @@
 
 Atlas Bank est une interface web moderne et responsive pour une institution bancaire fictive basée au Maroc. Le projet met l'accent sur une expérience utilisateur fluide, une sécurité visuelle (thème sombre/bleu marin et violet) et une gestion complète des services bancaires en ligne.
 
+## 🌐 Lien du Projet
+Retrouvez le site en ligne ici :
+
+(https://zeekoel.github.io/dev-web/)
+
+> **Note :** [ 🐾](https://zeekoel.github.io/dev-web/) — Visitez le projet en un clic.
+
+---
+
 ## 🚀 Fonctionnalités actuelles
 
 * **Accueil (acceil.html)** : Présentation des services principaux (Comptes, Crédit, Assurances).
@@ -28,12 +37,4 @@ Atlas Bank est une interface web moderne et responsive pour une institution banc
 ├── contact.html       # Support et contact
 ├── contact.css        # Styles spécifiques (contact/global)
 └── index.css          # (À créer ou lier pour l'accueil)<img width="791" height="462" alt="image" src="https://github.com/user-attachments/assets/36050380-65c9-4d79-b8ee-b16885d00b0c" />
-
-## 🌐 Lien du Projet
-Retrouvez le site en ligne ici :
-
-(https://zeekoel.github.io/dev-web/)
-
-> **Note :** [ 🐾](https://zeekoel.github.io/dev-web/) — Visitez le projet en un clic.
-
 ---
